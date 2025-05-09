@@ -61,6 +61,18 @@ def parse_arguments():
     parser.add_argument(
         "--auto-punctuation", default=".?!", help="Automatically add punctuation"
     )
+    parser.add_argument(
+        "--custom-voice",
+        default=os.getenv("CUSTOM_VOICE_NAME",""),
+        type=str,
+        help="Name of custom voice",
+    )
+    parser.add_argument(
+        "--endpoint_id",
+        default=os.getenv("AZURE_ENDPOINT_ID",""),
+        type=str,
+        help="Endpoint ID",
+    )
     parser.add_argument("--samples-per-chunk", type=int, default=1024)
     #
     parser.add_argument(
