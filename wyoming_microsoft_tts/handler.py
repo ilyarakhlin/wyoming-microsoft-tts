@@ -53,10 +53,13 @@ class MicrosoftEventHandler(AsyncEventHandler):
         # Join multiple lines
         text = " ".join(raw_text.strip().splitlines())
 
-        if synthesize.voice is None:  # Use default voice if not specified
-            voice = self.cli_args.voice
+        if self.cli_args.custom_voice:
+            voice = self.cli_args.custom_voice
         else:
-            voice = synthesize.voice.name
+            if synthesize.voice is None:  # Use default voice if not specified
+                voice = self.cli_args.voice
+            else:
+                voice = synthesize.voice.name
 
         if self.cli_args.auto_punctuation and text:
             # Add automatic punctuation (important for some voices)

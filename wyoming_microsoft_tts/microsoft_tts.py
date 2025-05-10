@@ -24,8 +24,8 @@ class MicrosoftTTS:
         if args.endpoint_id:
             self.speech_config.endpoint_id = args.endpoint_id
             
-        if args.custom-voice:
-            self.speech_config.speech_synthesis_voice_name = args.custom-voice
+        if args.custom_voice:
+            self.speech_config.speech_synthesis_voice_name = args.custom_voice
         else:
             self.speech_config.speech_synthesis_voice_name = ""
             

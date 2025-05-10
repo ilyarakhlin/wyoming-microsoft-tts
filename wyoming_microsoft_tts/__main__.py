@@ -68,7 +68,7 @@ def parse_arguments():
         help="Name of custom voice",
     )
     parser.add_argument(
-        "--endpoint_id",
+        "--endpoint-id",
         default=os.getenv("AZURE_ENDPOINT_ID",""),
         type=str,
         help="Endpoint ID",
