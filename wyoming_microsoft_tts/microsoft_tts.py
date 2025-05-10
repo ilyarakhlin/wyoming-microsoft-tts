@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 
 import azure.cognitiveservices.speech as speechsdk
-
+from azure.cognitiveservices.speech.enums import SpeechSynthesisOutputFormat
 from .download import get_voices
 
 _LOGGER = logging.getLogger(__name__)
@@ -28,8 +28,13 @@ class MicrosoftTTS:
             self.speech_config.speech_synthesis_voice_name = args.custom_voice
         else:
             self.speech_config.speech_synthesis_voice_name = ""
-            
-        self.speech_config.set_speech_synthesis_output_format(speechsdk.SpeechSynthesisOutputFormat.Riff44100Hz16BitMonoPcm)
+
+        if not args.audio_format:
+            self.speech_config.set_speech_synthesis_output_format(speechsdk.SpeechSynthesisOutputFormat.Riff44100Hz16BitMonoPcm)
+        else:
+            _format = SpeechSynthesisOutputFormat(args.audio_format)
+            self.speech_config.set_speech_synthesis_output_format(_format)
+        
         output_dir = str(tempfile.TemporaryDirectory())
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)

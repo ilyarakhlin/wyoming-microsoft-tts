@@ -74,7 +74,7 @@ def parse_arguments():
         help="Endpoint ID",
     )
     parser.add_argument("--samples-per-chunk", type=int, default=1024)
-    #
+    
     parser.add_argument(
         "--update-voices",
         action="store_true",
@@ -82,6 +82,7 @@ def parse_arguments():
     )
     #
     parser.add_argument("--debug", action="store_true", help="Log DEBUG messages")
+    parser.add_argument("--audio-format", type=int, default=37)
     return parser.parse_args()
 
 
@@ -136,7 +137,7 @@ async def main() -> None:
             description=get_description(voice_info),
             attribution=Attribution(
                 name="Microsoft",
-                url="https://github.com/hugobloem/wyoming-microsoft-tts",
+                url="https://github.com/ilyarakhlin/wyoming-microsoft-tts",
             ),
             installed=True,
             version=__version__,
